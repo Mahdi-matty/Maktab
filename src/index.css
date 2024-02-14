@@ -75,6 +75,65 @@ button:focus-visible {
   align-items: center;
   height: 300px;
 }
+.sideNav {
+  position: fixed;
+  left: -130px; 
+  top: 0;
+  height: 100%;
+  width: 130px;
+  background: linear-gradient(to bottom, rgb(255, 206, 137) 0%, rgb(252, 236, 214) 110%);
+  padding: 20px;
+  transition: left 0.3s; 
+  display: flex; /* Add this line to make it a flex container */
+  flex-direction: column; /* Align items vertically */
+  align-items: flex-end;
+}
+
+.sideNav:hover {
+  left: 0; 
+}
+
+.sideNav ul {
+  margin-top: 15px;
+  list-style: none;
+  padding: 0;
+}
+
+.sideNav li {
+  margin-bottom: 5px;
+}
+
+.sideNav link {
+  color: red;
+  text-decoration: none;
+  display: flex;
+  align-items: right;
+  position: fixed;
+}
+.sideNav Link:hover {
+  background-color: #555;
+  padding: 5px;
+  border-radius: 5px;
+}
+.navSpan {
+  visibility: hidden; 
+  top: 10%; 
+  right: calc(100% - 10px); 
+  transform: translateY(+50%);
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  transition: visibility 0.3s ease-in-out;
+}
+
+.sideNavLink:hover .navSpan {
+  visibility: visible; /* Show the text when the parent is being hovered over */
+}
+
+.iconSize {
+  font-size: 25px;
+  margin-top: 25px;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {

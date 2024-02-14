@@ -116,7 +116,7 @@ const API = {
         return fetch(`${URL_PREFIX}/api/subjects/student-subjects`,{
             method: 'GET',
             headers:{
-                "Authorization":`Bearer ${token}`
+                Authorization:`Bearer ${token}`
             }
         }).then(res=>{
             if(!res.ok){
@@ -130,7 +130,7 @@ const API = {
         return fetch(`${URL_PREFIX}/api/subjects/teacher-subjects`,{
             method: 'GET',
             headers:{
-                "Authorization":`Bearer ${token}`
+                Authorization:`Bearer ${token}`
             }
         }).then(res=>{
             if(!res.ok){

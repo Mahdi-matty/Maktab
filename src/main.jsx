@@ -9,6 +9,7 @@ import ProfilePage from './pages/ProfilePage.jsx';
 import SubjectPage from './pages/SubjectPage.jsx'
 import SubjectPart from './pages/SubjectPart.jsx'
 import Login from './pages/login.jsx';
+import AssignmentPage from './pages/AssignmentPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: '/subjects',
         element: <SubjectPage />,
+      },
+      {
+        path: '/assignments',
+        element: <AssignmentPage />,
       },
       {
         path: '/subjects/:id',

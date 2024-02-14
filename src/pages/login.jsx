@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaGithub } from 'react-icons/fa';
 import SignUp from '../compoenents/SignUp';
+import API from '../utils/API'
 
 export default function Login(){
     const navigate = useNavigate();
     const [userName, setuserName] = useState('');
-    const [Password, setPassword] = useState('');
+    const [PassworD, setPassword] = useState('');
     const [token, setToken] = useState("");
     const [githubusername, setGithubUserName] = useState('');
     const [githubpassword, setGithubPassword] = useState('');
@@ -20,18 +21,20 @@ export default function Login(){
       e.preventDefault();
       const userObj = {
         userName,
-        Password
+        PassworD
       }
       let loginstatus;
       if(userstatus == 'student'){
+        localStorage.setItem('userstatus', userstatus)
        loginstatus= API.login({
           username:userObj.userName,
-          password:userObj.Password,
+          password:userObj.PassworD,
         })
       }else if(userstatus == 'teacher'){
+        localStorage.setItem('userstatus', userstatus)
        loginstatus= API.Tlogin({
           username:userObj.userName,
-          password:userObj.Password,
+          password:userObj.PassworD,
         })
       }
       loginstatus
@@ -51,17 +54,18 @@ export default function Login(){
     };
     const handleSignup = userObj=>{
       let singupstatus;
-      if(userstatus == 'student'){
+     let userstatu= userObj.userstatus
+      if(userstatu == 'student'){
        singupstatus= API.signup({
-          username:userObj.userName,
+          username:userObj.username,
+          password: userObj.password,
           email: userObj.email,
-          password:userObj.Password,
         })
-      }else if(userstatus == 'teacher'){
+      }else if(userstatu == 'teacher'){
        singupstatus= API.Tsignup({
-          username:userObj.userName,
+          username:userObj.username,
+          password: userObj.password,
           emai: userObj.email,
-          password:userObj.Password,
         })
       }
       singupstatus.then(data=>{
@@ -79,7 +83,7 @@ export default function Login(){
         <h1>login</h1>
         <div className='loginPart'>
           <div className='loginDev'>
-            <form onSubmit={(e)=>handleSubmit(e, {userName, Password})}>
+            <form className='formLogin' onSubmit={(e)=>handleSubmit(e, {userName, PassworD})}>
                 <input
                 value={userName}
                 name="userName"
@@ -87,8 +91,8 @@ export default function Login(){
                 type="text"
                 placeholder="userName" />
                 <input
-                value={Password}
-                name="password"
+                value={PassworD}
+                name="passworD"
                 onChange={e=> setPassword(e.target.value)}
                 type="password"
                 placeholder="password"
