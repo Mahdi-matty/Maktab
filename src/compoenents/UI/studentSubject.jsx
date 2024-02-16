@@ -5,7 +5,8 @@ export default function StudentSubject(){
     const token = localStorage.getItem('token')
     const studentID = localStorage.getItem('studentid')
     useEffect(()=>{
-        API.getStudentSub(studentID).then(data=>{
+        API.getStudentSubs(token, studentID).then(data=>{
+            console.log(data)
             setSubject(data)
         })
     },[])
@@ -13,12 +14,11 @@ export default function StudentSubject(){
         <>
         <div>
             <ul>
-                {subjects.map((subject)=>{
-                    <li key={subject.id}>
+                {subjects.map((subject, index)=>(
+                    <li key={index}>
                         <p>{subject.title}{subject.level}</p>
-                    </li>
-                    
-                })}
+                    </li>  
+                ))}
             </ul>
         </div>
         </>

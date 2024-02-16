@@ -5,6 +5,7 @@ import API from '../utils/API'
 export default function ProfilePage(){
     const token = localStorage.getItem('token')
     const studentId = localStorage.getItem('studentid')
+    console.log(studentId)
     const [subjects, setSubjects] = useState([])
     const userstatu = localStorage.getItem('userstatus')
     const [isStudent, setIsStudent] = useState(false)
@@ -23,15 +24,14 @@ export default function ProfilePage(){
 
     const addSubject = (subject)=>{
        let subjectObj = {
-            studentSubject: subject.id
+            subjectId: subject.id,
+            studentId: studentId
         }
-     
-        API.SAddSub(token,subjectObj, studentId ) .then(() => {
-            console.log('Subject successfully added');
+        console.log(subjectObj)
+        API.addSubject(token, subjectObj).then(data=>{
+            console.log(data)
         })
-        .catch(error => {
-            console.error('Error adding subject:', error);
-        });
+     
 
     }
     return (
