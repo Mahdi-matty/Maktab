@@ -15,6 +15,7 @@ export default function Login(){
     const [loggedin, setIsLoggedIn] = useState(false)
     const [userstatus, setUserStatus]= useState('')
     const [showSignup, setShowSignup] = useState(false);
+    const [studentID, setStudentID] = useState('')
     const URL_PREFIX = 'lhttp://localhost:3001'
 
     const handleSubmit = (e)=> {
@@ -40,6 +41,8 @@ export default function Login(){
       loginstatus
       .then(data=>{
         console.log(data);
+        console.log(data.student.id)
+        localStorage.setItem('studentid', data.student.id)
         setIsLoggedIn(true);
         setToken(data.token);
         localStorage.setItem("token",data.token)

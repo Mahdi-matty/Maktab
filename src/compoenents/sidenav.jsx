@@ -46,7 +46,7 @@ function SideNav(){
                   className="sideNavLink"
                   >
                     <FaFileAlt className="iconSize"/> {/* Icon for Posts */}
-                    <span className='navSpan'>Posts</span>
+                    <span className='navSpan'>My Subjects</span>
                   </Link>
                 </li>
                 <li>
