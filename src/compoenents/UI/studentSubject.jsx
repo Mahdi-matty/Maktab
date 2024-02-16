@@ -14,8 +14,8 @@ export default function StudentSubject(){
         <>
         <div>
             <ul>
-                {subjects.map((subject, index)=>(
-                    <li key={index}>
+                {subjects.map((subject)=>(
+                    <li key={subject.id}>
                         <p>{subject.title}{subject.level}</p>
                     </li>  
                 ))}

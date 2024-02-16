@@ -1,3 +1,4 @@
+import { json } from "react-router-dom"
 
 const URL_PREFIX = "http://localhost:3001"
 const API = {
@@ -196,5 +197,78 @@ const API = {
             return res.json()
           })
         },
+
+    createAssignment: (token, assignObj)=>{
+       return fetch(`${URL_PREFIX}/api/assignments`, {
+            method: 'GET',
+            body: JSON.stringify(assignObj),
+            headers: {
+                "Content-Type":"application/json",
+                "Authorization":`Bearer ${token}`
+            }
+        }).then(res=>{
+            if(!res.ok){
+             throw new Error("cannot create")
+            }
+            return res.json()
+          })
+    },
+    getStudentAssignments: (token, studentId)=>{
+       return fetch(`${URL_PREFIX}/api/assignments/${studentId}`, {
+        method: 'GET',
+        headers: {
+            "Authorization":`Bearer ${token}`
+        }
+        }).then(res=>{
+            if(!res.ok){
+                throw new Error('something went wrong')
+            }else{
+                return res.json()
+            }
+        })
+    },
+    submitAssignment: (token,assignmentId, assignObj)=>{
+        return fetch(`${URL_PREFIX}/api/assignments/${assignmentId}`, {
+            method: 'PUT',
+            body: json.stringify(assignObj),
+            headers: {
+                "Content-Type":"application/json",
+                "Authorization":`Bearer ${token}`
+            }
+        }).then(res=>{
+            if(!res.ok){
+             throw new Error("cannot edit")
+            }
+            return res.json()
+          })
+    },
+    getOneAssignment: (token, assignmentId)=>{
+        return fetch(`${URL_PREFIX}/api/assignments/${assignmentId}`, {
+            method: 'GET',
+            headers: {
+                "Authorization":`Bearer ${token}`
+            }
+        }).then(res=>{
+            if(!res.ok){
+                throw new Error('something went wrong')
+            }else{
+                return res.json()
+            }
+        })
+    },
+    deleteAssign: (token, assignmentId)=>{
+        return fetch(`${URL_PREFIX}/api/assignments/${assignmentId}`, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type":"application/json",
+                "Authorization":`Bearer ${token}`
+            }
+        }).then(res=>{
+            if(!res.ok){
+             throw new Error("cannot delete")
+            }
+            return res.json()
+          })
+    }
 }
 export default API
