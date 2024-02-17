@@ -4,13 +4,14 @@ export default function TeacherSubject(){
     const [subjects, setSubject] = useState([])
     const [editTitle, setEditTitle] = useState('')
     const [editLevel, setEditLevel] = useState('')
-    const [editSubjectId, setEditSubjectId] = useState('')
-    const [editingSubject, setEditingSubject] =useState('')
+    const [editSubjectId, setEditSubjectId] = useState(null)
+    const [editingSubject, setEditingSubject] =useState(null)
     const [title, setTtile] = useState('')
     const [level, setLevel] = useState('')
     const token = localStorage.getItem('token')
+    const teacherID = localStorage.getItem('teacherid')
     useEffect(()=>{
-        API.getTeacherSub(token).then(sub=>{
+        API.getTeacherSub(token, teacherID).then(sub=>{
             setSubject(sub)
         })
     },[])
@@ -22,7 +23,7 @@ export default function TeacherSubject(){
             level: level,
         }
         API.createSubject(token,subjectObj).then(newSub=>{
-          API.getTeacherSub(token).then(res=>res.json()).then(data=>{
+          API.getTeacherSub(token, teacherID).then(res=>res.json()).then(data=>{
             console.log('data', data)
             setSubject(data)
             setTtile('');
@@ -70,14 +71,14 @@ export default function TeacherSubject(){
         <>
         <div>
             <ul>
-                {subjects.map((subject)=>{
+                {subjects.map((subject)=>(
                     <li key={subject.id}>
                         <p>{subject.title}{subject.level}</p>
                         <button onClick={() => handleEdit(subject)}>Edit</button>
                                 <div className="editNewCard">
                                 {editSubjectId === subject.id && ( 
                             <form className="editFormSubject" onSubmit={handleEditSubmit}>
-                                <label htmlFor="editTitle"><h2>Edit Card:</h2></label>
+                                <label htmlFor="editTitle"><h2>Edit Subject:</h2></label>
                                 <input
                                 name="editTitle"
                                 id="editTitle"
@@ -103,12 +104,12 @@ export default function TeacherSubject(){
                         </div>
                     </li>
                     
-                })}
+                ))}
             </ul>
         </div>
         <div>
         <form className="newFormSubject" onSubmit={handleFormSubmit}>
-          <label htmlFor="title"><h2>Add a Card:</h2></label>
+          <label htmlFor="title"><h2>Add a subject:</h2></label>
           <input
             name="title"
             id="title"
@@ -128,7 +129,7 @@ export default function TeacherSubject(){
             placeholder="Enter your level"
             className="answerNewCard"
           />
-          <button type="submit">Add new card</button>
+          <button type="submit">Add new subject</button>
         </form>        
         </div>
         </>

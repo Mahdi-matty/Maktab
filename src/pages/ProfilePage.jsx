@@ -50,13 +50,13 @@ export default function ProfilePage(){
         ):(
             <div>
                   <ul>
-                {subjects.map(subject=>{
+                {subjects.map(subject=>(
                    <li key={subject.id}>
                     <p>{subject.title}{subject.level}</p>
                    </li>
 
                    
-                })}
+                ))}
                  </ul>
             </div>
         )}

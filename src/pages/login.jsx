@@ -41,8 +41,7 @@ export default function Login(){
       loginstatus
       .then(data=>{
         console.log(data);
-        console.log(data.student.id)
-        localStorage.setItem('studentid', data.student.id)
+        userstatus == 'student'? localStorage.setItem('studentid', data.student.id) :localStorage.setItem('teacherid', data.teacher.id);
         setIsLoggedIn(true);
         setToken(data.token);
         localStorage.setItem("token",data.token)

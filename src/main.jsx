@@ -10,6 +10,7 @@ import SubjectPage from './pages/SubjectPage.jsx'
 import SubjectPart from './pages/SubjectPart.jsx'
 import Login from './pages/login.jsx';
 import AssignmentPage from './pages/AssignmentPage.jsx'
+import Notification from './compoenents/UI/notification.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <ProfilePage />,
+      },
+      {
+        path: '/notification',
+        element: <Notification />,
       },
       {
         path: '/subjects',

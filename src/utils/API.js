@@ -113,8 +113,8 @@ const API = {
             return res.json()
           })
         },
-    getTeacherSub:token=>{
-        return fetch(`${URL_PREFIX}/api/subjects/teacher-subjects`,{
+    getTeacherSub:(token, teacherId)=>{
+        return fetch(`${URL_PREFIX}/api/subjects/teacher-subjects/${teacherId}`,{
             method: 'GET',
             headers:{
                 "Authorization":`Bearer ${token}`
@@ -200,7 +200,7 @@ const API = {
 
     createAssignment: (token, assignObj)=>{
        return fetch(`${URL_PREFIX}/api/assignments`, {
-            method: 'GET',
+            method: 'POST',
             body: JSON.stringify(assignObj),
             headers: {
                 "Content-Type":"application/json",
@@ -214,7 +214,7 @@ const API = {
           })
     },
     getStudentAssignments: (token, studentId)=>{
-       return fetch(`${URL_PREFIX}/api/assignments/${studentId}`, {
+       return fetch(`${URL_PREFIX}/api/assignments/student/${studentId}`, {
         method: 'GET',
         headers: {
             "Authorization":`Bearer ${token}`

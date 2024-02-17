@@ -33,7 +33,8 @@ export default function StudentAssignments(){
         const assignObj= {
             title: editAssignTitle,
             answer: answer,
-            deadline: editDeadline
+            deadline: editDeadline,
+            status: 'submitted'
         }
         API.submitAssignment(token, editassignId, assignObj).then(data=>{
             
@@ -49,7 +50,8 @@ export default function StudentAssignments(){
             ) : (
                 <ul>
                     {assignments.map((assignment) => (
-                        <li key={assignment.id}>
+                         assignment.status === "pending" && (
+                             <li key={assignment.id}>
                             <p>{assignment.title}</p>
                             <p>{assignment.deadline}</p>
                             <button onClick={()=>handleStart(assignment)}>start</button>
@@ -66,6 +68,8 @@ export default function StudentAssignments(){
                             </form>
                             )}
                         </li>
+                        )
+                       
                     ))}
                 </ul>
             )}
