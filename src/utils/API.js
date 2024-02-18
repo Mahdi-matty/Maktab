@@ -269,6 +269,20 @@ const API = {
             }
             return res.json()
           })
-    }
+    },
+    getOneNotification: (token, assignmentId)=>{
+        return fetch(`${URL_PREFIX}/api/notification/pendingassignment/${assignmentId}`, {
+            method: 'GET',
+            headers: {
+                "Authorization":`Bearer ${token}`
+            }
+        }).then(res=>{
+            if(!res.ok){
+                throw new Error('something went wrong')
+            }else{
+                return res.json()
+            }
+        })
+    },
 }
 export default API

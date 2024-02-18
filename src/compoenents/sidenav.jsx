@@ -65,7 +65,7 @@ function SideNav(){
                   onClick={() => navigate('/notification')}
                   className="sideNavLink"
                   >
-                  <FaBell onClick={()=>showPending()} className="iconSize notBellIcon"/>
+                  <FaBell className="iconSize notBellIcon"/>
                   <span className='navSpan'>Notification</span>
                   </Link>
                   {/* {showAcceptPopup && (
