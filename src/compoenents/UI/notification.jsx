@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import API from "../../utils/API"
+import { Link } from "react-router-dom";
 
 export default function Notification(){
     const token = localStorage.getItem('token');
@@ -30,13 +31,31 @@ export default function Notification(){
             });
     }, []);
 
+    const changeNot = (notification, e)=>{
+        e.preventDefault()
+       const notificationId = notification.id
+       console.log(notificationId)
+        const message = notification.message
+        const notObj ={
+            message: message,
+            status: 'read'
+        }
+        API.readNotification(token, notificationId, notObj).then(data=>{
+            console.log(data)
+        }).catch(error=>{
+            console.log(error)
+        })
+    }
+
 
     return (
         <>
         <div>
             {notifications.map(notification=>(
                 <li key={notification.id}>
-                <p>{notification.message}</p>
+                    <p>{notification.assignmentId}</p>
+                    <p onClick={(e)=>changeNot(notification, e)}>{notification.status}</p>
+                    <Link to={`/assignments/${notification.assignmentId}`}>{notification.message}</Link>
                 </li>
             ))}
         </div>

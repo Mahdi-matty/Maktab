@@ -230,7 +230,7 @@ const API = {
     submitAssignment: (token,assignmentId, assignObj)=>{
         return fetch(`${URL_PREFIX}/api/assignments/${assignmentId}`, {
             method: 'PUT',
-            body: json.stringify(assignObj),
+            body: JSON.stringify(assignObj),
             headers: {
                 "Content-Type":"application/json",
                 "Authorization":`Bearer ${token}`
@@ -284,5 +284,35 @@ const API = {
             }
         })
     },
+    readNotification: (token, notificationId, notObj)=>{
+        return fetch(`${URL_PREFIX}/api/notification/finish/${notificationId}`,{
+            method: 'PUT',
+            body: JSON.stringify(notObj),
+            headers: {
+                "Content-Type":"application/json",
+                "Authorization":`Bearer ${token}`
+            }
+        }).then(res=>{
+            if(!res.ok){
+             throw new Error("cannot edit")
+            }
+            return res.json()
+          })
+    },
+    createNotification: (token, notObj)=>{
+        return fetch(`${URL_PREFIX}/api/notification`, {
+            method: 'POST',
+            body: JSON.stringify(notObj),
+            headers: {
+                "Content-Type":"application/json",
+                "Authorization":`Bearer ${token}`
+            }
+        }).then(res=>{
+            if(!res.ok){
+             throw new Error("cannot post")
+            }
+            return res.json()
+          })
+    }
 }
 export default API

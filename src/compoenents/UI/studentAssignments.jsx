@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import API from "../../utils/API"
+import { Link } from "react-router-dom"
 
 export default function StudentAssignments(){
     const token = localStorage.getItem('token')
@@ -20,26 +21,26 @@ export default function StudentAssignments(){
         })
     }, [])
 
-    const handleStart = (assignment)=>{
-        setEditAssign(assignment)
-        setEditAssignId(assignment.id)
-        setEditDeadline(assignment.deadline)
-        setEditAssignTitle(assignment.title)
+    // const handleStart = (assignment)=>{
+    //     setEditAssign(assignment)
+    //     setEditAssignId(assignment.id)
+    //     setEditDeadline(assignment.deadline)
+    //     setEditAssignTitle(assignment.title)
 
-    }
+    // }
 
-    const handleAssignSubmit = (e)=>{
-        e.preventDefault();
-        const assignObj= {
-            title: editAssignTitle,
-            answer: answer,
-            deadline: editDeadline,
-            status: 'submitted'
-        }
-        API.submitAssignment(token, editassignId, assignObj).then(data=>{
+    // const handleAssignSubmit = (e)=>{
+    //     e.preventDefault();
+    //     const assignObj= {
+    //         title: editAssignTitle,
+    //         answer: answer,
+    //         deadline: editDeadline,
+    //         status: 'submitted'
+    //     }
+    //     API.submitAssignment(token, editassignId, assignObj).then(data=>{
             
-        })
-    }
+    //     })
+    // }
 
 
     return (
@@ -52,7 +53,11 @@ export default function StudentAssignments(){
                     {assignments.map((assignment) => (
                          assignment.status === "pending" && (
                              <li key={assignment.id}>
+                                <Link 
+                                 to={`/assignments/${assignment.id}`}
+                                 className="sideNavLink">
                             <p>{assignment.title}</p>
+                            </Link>
                             <p>{assignment.deadline}</p>
                             <button onClick={()=>handleStart(assignment)}>start</button>
                             {editassignId === assignment.id && ( 

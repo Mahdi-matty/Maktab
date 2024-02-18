@@ -10,6 +10,7 @@ export default function TeacherAssignments(){
     const [assignTitle, setAssignTitle]= useState('')
     const [deadline, setDeadline] = useState('')
     const [subjectAssignment, setSubjectAssignment]= useState(null)
+    const [assignmentId, setAssignmentId] = useState('')
 
     useEffect(()=>{
         API.getTeacherSub(token, teacherID).then(sub=>{
@@ -31,9 +32,26 @@ export default function TeacherAssignments(){
         }
         API.createAssignment(token, assignObj).then(data=>{
             console.log(data)
-            setEditingSubjectId('')
-        })
-    }
+            setEditingSubjectId('');
+            setAssignmentId(data.id)
+            const notObj ={
+                message: 'you have a pending assignment',
+                assignmentId: assignmentId
+            };
+            API.createNotification(token, notObj).then(newNot=>{
+                console.log(newNot);
+                localStorage.setItem('notid', newNot.id)
+            })
+            .catch(error => {
+                console.error('Error creating assignment/notification:', error);
+            })
+            .finally(() => {
+                setEditingSubjectId('');
+                setAssignTitle('');
+                setDeadline('');
+            });
+        })}
+
 
     return (
         <>

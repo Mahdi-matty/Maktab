@@ -11,6 +11,7 @@ import SubjectPart from './pages/SubjectPart.jsx'
 import Login from './pages/login.jsx';
 import AssignmentPage from './pages/AssignmentPage.jsx'
 import Notification from './compoenents/UI/notification.jsx';
+import AssignmentPart from './compoenents/UI/assignmentpart.jsx';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: '/assignments',
         element: <AssignmentPage />,
+      },
+      {
+        path: '/assignments/:id',
+        element: <AssignmentPart />,
       },
       {
         path: '/subjects/:id',
