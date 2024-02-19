@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import API from "../../utils/API"
+import ImageUpload from './Cloudinary'
 export default function TeacherSubject(){
     const [subjects, setSubject] = useState([])
     const [editTitle, setEditTitle] = useState('')
@@ -10,17 +11,26 @@ export default function TeacherSubject(){
     const [level, setLevel] = useState('')
     const token = localStorage.getItem('token')
     const teacherID = localStorage.getItem('teacherid')
+    const URL_PREFIX = "http://localhost:3001"
+    const URL_Img = 'https://res.cloudinary.com/dio88jqax/image/upload/v1708386142'
+    
+
+
     useEffect(()=>{
         API.getTeacherSub(token, teacherID).then(sub=>{
             setSubject(sub)
         })
     },[])
 
+
+
     const handleFormSubmit = (e)=>{
+      const subjectPic = localStorage.getItem('imgurl')
         e.preventDefault();
         const subjectObj = {
             title: title,
             level: level,
+            subjectPic: `${URL_Img}/${subjectPic}`
         }
         API.createSubject(token,subjectObj).then(newSub=>{
           API.getTeacherSub(token, teacherID).then(res=>res.json()).then(data=>{
@@ -46,24 +56,22 @@ export default function TeacherSubject(){
 
   const handleEditSubmit = (e) => {
     e.preventDefault();
+    const subjectPic = localStorage.getItem('imgurl')
     const editedSubject = {
       title: editTitle,
       level: editLevel,
+      subjectPic: `${URL_Img}/${subjectPic}`
     };
 
     API.editSubject(token, editSubjectId, editedSubject)
-      .then(() => {
-        API.getTeacherSub(token).then(res=>res.json()).then(data=>{
+      .then((data) => {
+        console.log(data);
+        API.getTeacherSub(token, teacherID).then(res=>res.json()).then(data=>{
           console.log('data', data)
           setSubject(data)
             setEditingCardId(null)
           })
           .catch(err => console.error(err));
-
-        // Clear editing state
-        setEditingSubject(null);
-        setEditTitle('');
-        setEditLevel('');
       })
       .catch(err => console.error(err));
   };
@@ -74,6 +82,8 @@ export default function TeacherSubject(){
                 {subjects.map((subject)=>(
                     <li key={subject.id}>
                         <p>{subject.title}{subject.level}</p>
+                        <img src={subject.subjectPic} />
+                        <p>{subject.subjectPic}</p>
                         <button onClick={() => handleEdit(subject)}>Edit</button>
                                 <div className="editNewCard">
                                 {editSubjectId === subject.id && ( 
@@ -98,6 +108,7 @@ export default function TeacherSubject(){
                                 placeholder="Edit your content"
                                 className="answerEditCard"
                                 />
+                                <ImageUpload />
                                 <button type="submit">Save Changes</button>
                             </form>
                             )}
@@ -106,7 +117,7 @@ export default function TeacherSubject(){
                     
                 ))}
             </ul>
-        </div>
+        </div>       
         <div>
         <form className="newFormSubject" onSubmit={handleFormSubmit}>
           <label htmlFor="title"><h2>Add a subject:</h2></label>
@@ -129,6 +140,7 @@ export default function TeacherSubject(){
             placeholder="Enter your level"
             className="answerNewCard"
           />
+          <ImageUpload />
           <button type="submit">Add new subject</button>
         </form>        
         </div>
