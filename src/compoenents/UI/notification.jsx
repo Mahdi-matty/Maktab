@@ -52,11 +52,13 @@ export default function Notification(){
         <>
         <div>
             {notifications.map(notification=>(
+                notification.status === 'unread' && (
                 <li key={notification.id}>
                     <p>{notification.assignmentId}</p>
-                    <p onClick={(e)=>changeNot(notification, e)}>{notification.status}</p>
-                    <Link to={`/assignments/${notification.assignmentId}`}>{notification.message}</Link>
+                    <p>{notification.status}</p>
+                    <Link onClick={(e)=>changeNot(notification, e)} to={`/assignments/${notification.assignmentId}`}>{notification.message}</Link>
                 </li>
+                )
             ))}
         </div>
         </>

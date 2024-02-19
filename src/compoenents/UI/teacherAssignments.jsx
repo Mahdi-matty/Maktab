@@ -22,6 +22,15 @@ export default function TeacherAssignments(){
         setSubjectAssignment(subject)
         setEditingSubjectId(subject.id)
     }
+    useEffect(()=>{
+       const notObj ={
+            message: 'you have a pending assignment',
+            assignmentId: assignmentId
+        }
+        API.createNotification(token, notObj).then(newNot=>{
+            console.log(newNot)
+        })
+    }, [assignmentId])
 
     const handleAssignSubmit = (e)=>{
         e.preventDefault();
@@ -34,14 +43,15 @@ export default function TeacherAssignments(){
             console.log(data)
             setEditingSubjectId('');
             setAssignmentId(data.id)
-            const notObj ={
-                message: 'you have a pending assignment',
-                assignmentId: assignmentId
-            };
-            API.createNotification(token, notObj).then(newNot=>{
-                console.log(newNot);
-                localStorage.setItem('notid', newNot.id)
-            })
+            console.log(data.id)
+            // const notObj ={
+            //     message: 'you have a pending assignment',
+            //     assignmentId: assignmentId
+            // };
+            // API.createNotification(token, notObj).then(newNot=>{
+            //     console.log(newNot);
+            //     // localStorage.setItem('notid', newNot.id)
+            // })
             .catch(error => {
                 console.error('Error creating assignment/notification:', error);
             })
