@@ -313,6 +313,65 @@ const API = {
             }
             return res.json()
           })
-    }
+    },
+    createNote: (token, noteObj)=>{
+        return fetch(`${URL_PREFIX}/api/notes`, {
+            method: 'POST',
+            body: JSON.stringify(noteObj),
+            headers: {
+                "Content-Type":"application/json",
+                "Authorization":`Bearer ${token}`
+            }
+        }).then(res=>{
+            if(!res.ok){
+             throw new Error("cannot post")
+            }
+            return res.json()
+          })
+    },
+    getOneNote: (token, noteId)=>{
+        return fetch(`${URL_PREFIX}/api/notes/${noteId}`, {
+            method: 'GET',
+            headers: {
+                "Authorization":`Bearer ${token}`
+            }
+        }).then(res=>{
+            if(!res.ok){
+                throw new Error('something went wrong')
+            }else{
+                return res.json()
+            }
+        })
+    },
+    updateNote: (token,noteId, noteObj)=>{
+        return fetch(`${URL_PREFIX}/api/assignments/${noteId}`, {
+            method: 'PUT',
+            body: JSON.stringify(noteObj),
+            headers: {
+                "Content-Type":"application/json",
+                "Authorization":`Bearer ${token}`
+            }
+        }).then(res=>{
+            if(!res.ok){
+             throw new Error("cannot edit")
+            }
+            return res.json()
+          })
+    },
+    getSubjectNotes: (token, subjectId)=>{
+        return fetch(`${URL_PREFIX}/api/subjects/notes/${subjectId}`, {
+         method: 'GET',
+         headers: {
+             "Authorization":`Bearer ${token}`
+         }
+         }).then(res=>{
+             if(!res.ok){
+                 throw new Error('something went wrong')
+             }else{
+                 return res.json()
+             }
+         })
+     },
+
 }
 export default API

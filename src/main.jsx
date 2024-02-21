@@ -47,7 +47,7 @@ const router = createBrowserRouter([
         element: <AssignmentPart />,
       },
       {
-        path: '/subjects/:id',
+        path: '/notes/:subjectId',
         element: <SubjectPart />,
       },             
     ],

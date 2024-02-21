@@ -4,9 +4,7 @@ import StudentSubject from "../compoenents/UI/studentSubject";
 import TeacherSubject from "../compoenents/UI/teacherSubject";
 export default function SubjectPage(){
     const token = localStorage.getItem('token')
-    console.log(token)
     const userstatu = localStorage.getItem('userstatus')
-    console.log(userstatu)
  
 
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import API from "../../utils/API"
 import ImageUpload from './Cloudinary'
+import { Link } from "react-router-dom"
 export default function TeacherSubject(){
     const [subjects, setSubject] = useState([])
     const [editTitle, setEditTitle] = useState('')
@@ -17,8 +18,9 @@ export default function TeacherSubject(){
 
 
     useEffect(()=>{
-        API.getTeacherSub(token, teacherID).then(sub=>{
-            setSubject(sub)
+        API.getTeacherSub(token, teacherID).then(data=>{
+          console.log(data)
+            setSubject(data)
         })
     },[])
 
@@ -81,7 +83,9 @@ export default function TeacherSubject(){
             <ul>
                 {subjects.map((subject)=>(
                     <li key={subject.id}>
-                        <p>{subject.title}{subject.level}</p>
+                        <Link to={`/notes/${subject.id}`}>
+                          <p>{subject.title}{subject.level}</p>
+                        </Link>
                         <img src={subject.subjectPic} />
                         <p>{subject.subjectPic}</p>
                         <button onClick={() => handleEdit(subject)}>Edit</button>

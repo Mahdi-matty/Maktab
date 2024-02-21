@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import API from "../../utils/API"
+import { Link } from "react-router-dom"
 export default function StudentSubject(){
     const [subjects, setSubject] = useState([])
     const token = localStorage.getItem('token')
@@ -16,7 +17,8 @@ export default function StudentSubject(){
             <ul>
                 {subjects.map((subject)=>(
                     <li key={subject.id}>
-                        <p>{subject.title}{subject.level}</p>
+                        <Link to={`/notes/${subject.id}`}><p>{subject.title}{subject.level}</p></Link>
+                        <img src={subject.subjectPic} />
                     </li>  
                 ))}
             </ul>
