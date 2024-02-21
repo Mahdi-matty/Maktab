@@ -372,6 +372,20 @@ const API = {
              }
          })
      },
+     getAllNotes:token=>{
+        return fetch(`${URL_PREFIX}/api/notes`,{
+            method:"GET",
+            headers: {
+                "Authorization":`Bearer ${token}`
+            }
+        }).then(res=>{
+            if(!res.ok){
+                console.log(Error)
+             throw new Error("invalid token")
+            }
+            return res.json()
+          })
+    },
 
 }
 export default API

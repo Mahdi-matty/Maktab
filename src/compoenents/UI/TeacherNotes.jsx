@@ -21,6 +21,12 @@ export default function TeacherNotes(){
         })
     }, [])
 
+    useEffect(()=>{
+        API.getAllNotes(token).then(data=>{
+            console.log(data)
+        })
+    })
+
     const handleEdit = (note)=>{
         setEditNoteId(note.id)
         setEditContent(note.content)
@@ -62,9 +68,10 @@ export default function TeacherNotes(){
                     <h3>{note.title}</h3>
                     <p>{note.content}</p>
                     <ul>
-                        {note.questions.map((question , index)=>(
-                            <li key={index}>{question}
-                            <button onClick={()=>handleQEdit(question)}></button>
+                    {note.questions.map((question , index)=>(
+                         <li key={index}>
+                        {question.questionText}
+                        <button onClick={()=>handleQEdit(question)}>Edit</button>
                             {editQuestionId === question.id && (
                                 <form onSubmit={handleQEditSubmit}>
                                     <input 
