@@ -60,6 +60,16 @@ function SideNav(){
                   </Link>
                 </li>
                 <li>
+                  <Link
+                  to="/exam"
+                  onClick={() => navigate('/exam')}
+                  className="sideNavLink"
+                  >
+                    <FaQuestionCircle className="iconSize"/> {/* Icon for Assignments */}
+                    <span className='navSpan'>Exam</span>
+                  </Link>
+                </li>
+                <li>
                 <Link
                   to="/notification"
                   onClick={() => navigate('/notification')}

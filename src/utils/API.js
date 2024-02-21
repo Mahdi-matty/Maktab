@@ -386,6 +386,20 @@ const API = {
             return res.json()
           })
     },
+    getExam: (token, subjectId)=>{
+        return fetch(`${URL_PREFIX}/api/subjects/exam/${subjectId}`, {
+         method: 'GET',
+         headers: {
+             "Authorization":`Bearer ${token}`
+         }
+         }).then(res=>{
+             if(!res.ok){
+                 throw new Error('something went wrong')
+             }else{
+                 return res.json()
+             }
+         })
+     },
 
 }
 export default API
