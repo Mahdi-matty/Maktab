@@ -9,6 +9,7 @@ export default function TeacherExam(){
     const teacherID = localStorage.getItem('teacherid')
     const [examSubjectId, setExamSubjectId] = useState(null)
     const [questions, setQuestion] = useState([])
+    const [editQuest, setEditQuest] = useState()
     useEffect(()=>{
         API.getTeacherSub(token, teacherID).then(data=>{
           console.log(data)
@@ -22,7 +23,15 @@ export default function TeacherExam(){
         API.getExam(token, subjectId).then(data=>{
             console.log(data.questions)
             setQuestion(data.questions)
-            console.log(Object.values(questions))
+            const examObj = {
+                questions: data.questions,
+                subjectId: subjectId
+            }
+            console.log(examObj)
+            API.createExam(token, examObj).then(data=>{
+                console.log(data)
+            })
+
         })
     }
 
@@ -36,7 +45,7 @@ export default function TeacherExam(){
                 <ul>
                      {subjects.map((subject)=>(
                         <li key={subject.id}>
-                            <p>{subject.title}</p>
+                            <p>{subject.title}{subject.level}</p>
                             <button onClick={()=>startExam(subject)}>start exam</button>
                             <div>
                                 {examSubjectId === subject.id &&(
@@ -44,11 +53,7 @@ export default function TeacherExam(){
                                         <ul>
                                              {questions.map((question, index)=>(
                                             <li key={index}>
-                                                <form>
                                                     <p>{question.questionText}</p>
-                                                    <input />
-                                                    <button >submit</button>
-                                                </form>
                                             </li>
                                         ))}
                                         </ul>

@@ -400,6 +400,50 @@ const API = {
              }
          })
      },
+     createExam: (token, examObj)=>{
+        return fetch(`${URL_PREFIX}/api/exam`, {
+            method: 'POST',
+            body: JSON.stringify(examObj),
+            headers: {
+                "Content-Type":"application/json",
+                "Authorization":`Bearer ${token}`
+            }
+        }).then(res=>{
+            if(!res.ok){
+             throw new Error("cannot post")
+            }
+            return res.json()
+          })
+    },
+    updateExam: (token,examId, examObj)=>{
+        return fetch(`${URL_PREFIX}/api/exam/${examId}`, {
+            method: 'PUT',
+            body: JSON.stringify(examObj),
+            headers: {
+                "Content-Type":"application/json",
+                "Authorization":`Bearer ${token}`
+            }
+        }).then(res=>{
+            if(!res.ok){
+             throw new Error("cannot edit")
+            }
+            return res.json()
+          })
+    },
+    getSubjectExam: (token, subjectId)=>{
+        return fetch(`${URL_PREFIX}/api/exam/subject/${subjectId}`, {
+         method: 'GET',
+         headers: {
+             "Authorization":`Bearer ${token}`
+         }
+         }).then(res=>{
+             if(!res.ok){
+                 throw new Error('something went wrong')
+             }else{
+                 return res.json()
+             }
+         })
+     },
 
 }
 export default API
