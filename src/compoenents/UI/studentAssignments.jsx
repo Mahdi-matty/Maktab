@@ -45,20 +45,20 @@ export default function StudentAssignments(){
 
     return (
         <>
-        <div>
+        <div className="studentAssignDev">
             {assignments.length === 0 ? (
-                <p>No assignments</p>
+                <p className="studentAssignP">No assignments</p>
             ) : (
-                <ul>
+                <ul className="studentAssignUl">
                     {assignments.map((assignment) => (
                          assignment.status === "pending" && (
-                             <li key={assignment.id}>
+                             <li className="studentAssignLi" key={assignment.id}>
                                 <Link 
                                  to={`/assignments/${assignment.id}`}
                                  className="sideNavLink">
-                            <p>{assignment.title}</p>
+                            <p className="studentAssignP">{assignment.title}</p>
                             </Link>
-                            <p>{assignment.deadline}</p>
+                            <p className="studentAssignP">{assignment.deadline}</p>
                             <button onClick={()=>handleStart(assignment)}>start</button>
                             {editassignId === assignment.id && ( 
                             <form onSubmit={handleAssignSubmit}>

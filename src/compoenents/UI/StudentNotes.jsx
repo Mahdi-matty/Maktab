@@ -17,10 +17,10 @@ export default function StudentNotes(){
 
     return (
         <>
-        <div>
-            <ul>
+        <div className="studentNoteDev">
+            <ul className="studentNoteUl">
                  {notes.map(note=>(
-                <li key={note.id}>
+                <li className="studentNoteLi" key={note.id}>
                     <h3>{note.title}</h3>
                     <p>{note.content}</p>
                     <p>{note.questions}</p>

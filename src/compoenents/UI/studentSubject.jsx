@@ -13,10 +13,10 @@ export default function StudentSubject(){
     },[])
     return (
         <>
-        <div>
-            <ul>
+        <div className="studentSubjectDiv">
+            <ul className="studentSubjectUl">
                 {subjects.map((subject)=>(
-                    <li key={subject.id}>
+                    <li className="studentSubjectLi" key={subject.id}>
                         <Link to={`/notes/${subject.id}`}><p>{subject.title}{subject.level}</p></Link>
                         <img src={subject.subjectPic} />
                     </li>  

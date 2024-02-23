@@ -68,22 +68,22 @@ export default function StudentExam(){
 
     return (
         <>
-          <div>
-            <ul>
+          <div className="studentExamDev">
+            <ul className="studentExamUl">
                 {subjects.map((subject)=>(
-                     <li key={subject.id}>
+                     <li className="studentSubjectExamli" key={subject.id}>
                      <p>{subject.title}{subject.level}</p>
                      <button onClick={()=>startExam(subject)}>start exam</button>
                      <div>
                          {subjectId === subject.id &&(
-                             <div>
-                                 <ul>
+                             <div className="studentQuestDev">
+                                 <ul className="studentQuestUl">
                                       {questions.map((question, index)=>(
-                                     <li key={index}>
-                                        <p>{question.questionText}</p>
+                                     <li className="studentQuestLi" key={index}>
+                                        <p className="studentQuestP">{question.questionText}</p>
                                         < button onClick={()=>startAnswer(question, index)}>Start</button>
                                          {questionId == index &&(
-                                            <div>
+                                            <div className="studentQuestIdDev">
                                                  <form onSubmit={handleSubmit}>
                                              <input 
                                                 name="newquest"

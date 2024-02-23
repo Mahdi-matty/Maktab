@@ -50,7 +50,7 @@ export default function AssignmentPart(){
 
     return (
         <>
-        <div>
+        <div className="studentAssign">
             <p>{assignment.title}</p>
              <p>{assignment.deadline}</p>
                             <button onClick={()=>handleStart(assignment)}>start</button>

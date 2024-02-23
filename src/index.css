@@ -133,7 +133,137 @@ button:focus-visible {
   font-size: 25px;
   margin-top: 25px;
 }
+.studentSubjectDiv {
+  display: flex;
+  justify-content: center;
+}
 
+.studentSubjectUl {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.studentSubjectLi {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 20px;
+  width: 200px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.studentSubjectLi p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.studentSubjectLi img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.studentNoteDev {
+  display: flex;
+  justify-content: center;
+}
+.studentNoteUl {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.studentNoteLi {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 20px;
+  width: 200px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.studentNoteLi p {
+  margin: 0;
+  font-weight: bold;
+}
+.studentExamDev {
+  display: flex;
+  justify-content: center;
+}
+
+.studentExamUl {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.studentSubjectExamli {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 20px;
+  width: 300px;
+}
+
+.studentSubjectExamli p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.studentQuestDev {
+  margin-top: 10px;
+}
+
+.studentQuestUl {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.studentQuestLi {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  padding: 15px;
+}
+
+.studentQuestP {
+  margin: 0;
+  font-weight: bold;
+}
+
+.studentQuestIdDev {
+  margin-top: 10px;
+}
+
+.studentQuestIdDev form {
+  display: flex;
+  flex-direction: column;
+}
+
+.studentQuestIdDev input {
+  margin-bottom: 10px;
+}
+
+.studentQuestIdDev button {
+  align-self: flex-end;
+}
 
 @media (prefers-color-scheme: light) {
   :root {
