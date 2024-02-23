@@ -35,6 +35,13 @@ export default function TeacherExam(){
         })
     }
 
+    useEffect(()=>{
+        let examId = 12
+        API.getOneExam(token, examId).then(data=>{
+            console.log(data)
+        })
+    })
+
     
 
 

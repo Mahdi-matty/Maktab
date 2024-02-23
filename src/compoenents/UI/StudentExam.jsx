@@ -12,8 +12,9 @@ export default function StudentExam(){
     const [subjectId, setSubjectId] = useState(null)
     const [examId, setExamId] = useState('')
     const [newquest, setNewQuest] = useState('')
+    const [questType, setQuestType]= useState('')
     const [questionId, setQuestionId] = useState(null)
-    const [examObj, setExamObj]= useState([])
+    const [examiObj, setExamiObj]= useState([])
     useEffect(()=>{
         API.getStudentSubs(token, studentID).then(data=>{
             setSubject(data)
@@ -34,6 +35,7 @@ export default function StudentExam(){
     }
     const startAnswer = (question, index)=>{
         setNewQuest(question.questionText)
+        setQuestType(question.questiontype)
         console.log(newquest)
         console.log(index)
         setQuestionId(index)
@@ -41,20 +43,23 @@ export default function StudentExam(){
 
 
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = (e, index)=>{
         e.preventDefault();
-        const newObj ={
-            question : {
-                question: newquest,
-                answer: answer
-            }
-        }
-        console.log(newObj)
-        setExamObj(prevExamObj=>[...prevExamObj, newObj])
+        const updatedExamObj = [...examiObj];
+        updatedExamObj[index] = {
+                    questionText: newquest,
+                    questiontype: questType,
+                    answer: answer          
+        };
+        // console.log(newObj)
+        setExamiObj(updatedExamObj);
        
     }
 
     const finishExam = ()=>{
+        const examObj ={
+            questions: examiObj
+        }
         console.log(examObj)
         API.updateExam(token, examId, examObj).then(data=>{
             console.log(data)
@@ -84,7 +89,7 @@ export default function StudentExam(){
                                         < button onClick={()=>startAnswer(question, index)}>Start</button>
                                          {questionId == index &&(
                                             <div className="studentQuestIdDev">
-                                                 <form onSubmit={handleSubmit}>
+                                                 <form onSubmit={(e)=>handleSubmit(e, index)}>
                                              <input 
                                                 name="newquest"
                                                 id="newquest"

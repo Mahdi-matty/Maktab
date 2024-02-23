@@ -444,6 +444,20 @@ const API = {
              }
          })
      },
+     getOneExam: (token, examId)=>{
+        return fetch(`${URL_PREFIX}/api/exam/${examId}`, {
+            method: 'GET',
+            headers: {
+                "Authorization":`Bearer ${token}`
+            }
+        }).then(res=>{
+            if(!res.ok){
+                throw new Error('something went wrong')
+            }else{
+                return res.json()
+            }
+        })
+    },
 
 }
 export default API

@@ -5,11 +5,11 @@ import API from '../utils/API'
 export default function ProfilePage(){
     const token = localStorage.getItem('token')
     const studentId = localStorage.getItem('studentid')
-    console.log(studentId)
+    // console.log(studentId)
     const [subjects, setSubjects] = useState([])
     const userstatu = localStorage.getItem('userstatus')
     const [isStudent, setIsStudent] = useState(false)
-    console.log(userstatu)
+    // console.log(userstatu)
     const URL_PREFIX = "http://localhost:3001"
     useEffect(()=>{
         userstatu == 'student' ? setIsStudent(true) : setIsStudent(false)
