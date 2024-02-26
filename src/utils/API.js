@@ -1,6 +1,7 @@
 import { json } from "react-router-dom"
 
-const URL_PREFIX = "http://localhost:3001"
+// const URL_PREFIX = "http://localhost:3001"
+const URL_PREFIX = 'https://immense-thicket-04941-1a1f15e00e36.herokuapp.com/'
 const API = {
     login:userObj=>{
         return fetch(`${URL_PREFIX}/api/students/login`,{
